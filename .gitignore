@@ -1,0 +1,37 @@
+Thumbs.db
+.gradle
+target/
+out/
+.micronaut/
+*.iml
+sdk install micronaut*.ipr
+*.iws
+.project
+.settings
+.classpath
+.factorypath
+build/
+# Tooling
+.idea/
+.DS_Store
+
+
+*.iml
+.gradle
+.idea
+.kotlin
+.DS_Store
+build
+*/build
+captures
+.externalNativeBuild
+.cxx
+local.properties
+xcuserdata/
+Pods/
+*.jks
+*.gpg
+*yarn.lock
+
+
+.env

@@ -28,6 +28,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -112,7 +114,11 @@ fun CommandEngine.processCommand(
 													}
 												)
 												{
-													Text("Cancel")
+													Text(
+														"Cancel",
+														fontWeight = FontWeight.Normal,
+														fontStyle = FontStyle.Normal
+													)
 												}
 												Spacer(
 													modifier = Modifier
@@ -124,7 +130,11 @@ fun CommandEngine.processCommand(
 													}
 												)
 												{
-													Text("Submit")
+													Text(
+														"Submit",
+														fontWeight = FontWeight.Normal,
+														fontStyle = FontStyle.Normal
+													)
 												}
 											}
 										}

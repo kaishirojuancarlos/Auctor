@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.sp
@@ -44,6 +45,19 @@ val typography = Typography(
 	titleSmall = TextStyle(
 		fontSize = 12.sp,
 		fontWeight = FontWeight.Bold
+	),
+	
+	labelMedium = TextStyle(
+		fontSize = 10.sp,
+		fontWeight = FontWeight.Thin
+	),
+	labelLarge = TextStyle(
+		fontSize = 12.sp,
+		fontWeight = FontWeight.Thin
+	),
+	labelSmall = TextStyle(
+		fontSize = 8.sp,
+		fontWeight = FontWeight.Thin
 	)
 )
 

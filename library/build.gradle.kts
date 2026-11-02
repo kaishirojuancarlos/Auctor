@@ -88,15 +88,13 @@ dependencies {
     implementation(libs.compose.nav3)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.materialKolor)
-    
+    // #
     implementation(compose.desktop.currentOs)
     implementation(libs.kotlinx.coroutines.swing)
-    
     // Test dependencies
     implementation(kotlin("test"))
     implementation(libs.compose.ui.test)
     implementation(libs.kotlinx.coroutines.test)
-    
     // ###
     ksp("io.micronaut:micronaut-http-validation")
     ksp("io.micronaut.serde:micronaut-serde-processor")
@@ -109,23 +107,21 @@ dependencies {
     runtimeOnly("tools.jackson.module:jackson-module-kotlin")
     testImplementation("io.micronaut:micronaut-http-client")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    
     // ########
     implementation("io.micronaut:micronaut-context")
-
+    // ###
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    
     // ##
     testImplementation(platform("org.junit:junit-bom:6.1.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    
     // #########
     implementation("com.github.ajalt.clikt:clikt:5.1.0")
-    // implementation("org.tomlj:tomlj:1.1.1")
-    // implementation("dev.eav.tomlkt:tomlkt:0.6.1")/
-    /*implementation("com.akuleshov7:ktoml-core:0.7.1")
-    implementation("com.akuleshov7:ktoml-file:0.7.1")*/
+    // ###
+    implementation("com.akuleshov7:ktoml-core:0.7.1")
+    implementation("com.akuleshov7:ktoml-file:0.7.1")
+    // ###
+    implementation("org.jetbrains.compose.material:material-icons-extended")
 }
 
 graalvmNative.toolchainDetection = true // false

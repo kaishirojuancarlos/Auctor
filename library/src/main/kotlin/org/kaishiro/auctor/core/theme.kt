@@ -78,7 +78,7 @@ fun AuctorTheme(
 		content = {
 			CompositionLocalProvider(
 				LocalTextStyle provides typography.bodyMedium,
-				LocalDensity provides Density(0.75f)
+				// LocalDensity provides Density(0.75f)
 			)
 			{
 				content()

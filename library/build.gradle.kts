@@ -124,6 +124,7 @@ dependencies {
     implementation("org.jetbrains.compose.material:material-icons-extended")
     implementation("io.github.sanyarnd:standard-paths:2.0.0")
     implementation("tech.annexflow.compose:constraintlayout-compose-multiplatform:0.8.2")
+implementation("io.github.sanyarnd:standard-paths:2.0.0")
 }
 
 graalvmNative.toolchainDetection = true // false

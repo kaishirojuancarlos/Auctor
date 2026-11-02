@@ -88,7 +88,7 @@ dependencies {
     implementation(libs.compose.nav3)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.materialKolor)
-    // #
+    
     implementation(compose.desktop.currentOs)
     implementation(libs.kotlinx.coroutines.swing)
     // Test dependencies
@@ -122,6 +122,8 @@ dependencies {
     implementation("com.akuleshov7:ktoml-file:0.7.1")
     // ###
     implementation("org.jetbrains.compose.material:material-icons-extended")
+    implementation("io.github.sanyarnd:standard-paths:2.0.0")
+    implementation("tech.annexflow.compose:constraintlayout-compose-multiplatform:0.8.2")
 }
 
 graalvmNative.toolchainDetection = true // false

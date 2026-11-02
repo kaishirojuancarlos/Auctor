@@ -121,7 +121,7 @@ dependencies {
     implementation("com.akuleshov7:ktoml-core:0.7.1")
     implementation("com.akuleshov7:ktoml-file:0.7.1")
     // ###
-    implementation("org.jetbrains.compose.material:material-icons-extended")
+    implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
     implementation("io.github.sanyarnd:standard-paths:2.0.0")
     implementation("tech.annexflow.compose:constraintlayout-compose-multiplatform:0.8.2")
 implementation("io.github.sanyarnd:standard-paths:2.0.0")

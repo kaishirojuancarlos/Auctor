@@ -66,6 +66,7 @@ class SudoManager
 	}
 	
 	fun execute(
+		password: String,
 		vararg command: String
 	): Process
 	{
@@ -75,7 +76,7 @@ class SudoManager
 		})
 		
 		return ProcessBuilder(
-			listOf("sudo", "-n", "---") + command
+			listOf("echo", "-n", "\"${password}\"", "|", "sudo", "-S", "-n", "---") + command
 		)
 			.start()
 	}

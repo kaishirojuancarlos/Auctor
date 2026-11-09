@@ -82,14 +82,13 @@ internal fun displayGuiPrompt(
 			): PassReturn
 			{
 				textFieldSelectionFunction.invoke()
-				val password = password.toByteArray()
-				val verified = passwordVerifier.verifyCurrentUser(password)
+				val verified = passwordVerifier.verifyCurrentUser(password.toByteArray())
 				if(!verified)
 				{
 					count++
 					return PassReturn.Invalid
 				}
-				val process = sudoManager.execute(process)
+				val process = sudoManager.execute(password, process)
 				process.waitFor()
 				return if(process.exitValue() != 0)
 				{

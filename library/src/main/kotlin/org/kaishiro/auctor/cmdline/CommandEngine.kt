@@ -75,26 +75,27 @@ class CommandEngine: CliktCommand(
 			)
 		else
 		{
-			System.getenv("XDG_SESSION_TYPE")?.lowercase()?.trim().let {
-				it?.let {
-					if(it == "wayland")
+			val bc: String = System.getenv("XDG_SESSION_TYPE")
+			bc.lowercase().trim().let {
+				when(it)
+				{
+					"wayland" ->
 						displayGuiPrompt(
 							title = title,
 							process = command,
 							description = description,
 							retries = retries
 						)
-					else if(it == "x11")
+					"x11" ->
 						displayTuiPrompt(
 							title = title,
 							process = command,
 							description = description,
 							retries = retries
 						)
-					else
+					else ->
 						throw IllegalStateException("Invalid backend!")
 				}
-				throw IllegalStateException("No backend available!")
 			}
 		}
 	}

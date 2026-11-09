@@ -37,7 +37,7 @@ internal fun displayTuiPrompt(
 			val verified = passwordVerifier.verifyCurrentUser(it.toByteArray())
 			if(verified)
 			{
-				val process = sudoManager.execute(process)
+				val process = sudoManager.execute(it, process)
 				process.waitFor()
 				break@loop
 			}

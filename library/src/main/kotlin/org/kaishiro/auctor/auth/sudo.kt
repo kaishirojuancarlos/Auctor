@@ -15,8 +15,9 @@ class SudoManager
 			"sudo", "-S", "-p", "", "-v"
 		)
 			.apply {
-				redirectOutput(ProcessBuilder.Redirect.DISCARD)
-				redirectError(ProcessBuilder.Redirect.DISCARD)
+				inheritIO()
+				// redirectOutput(ProcessBuilder.Redirect.DISCARD)
+				// redirectError(ProcessBuilder.Redirect.DISCARD)
 			}
 			.start()
 		

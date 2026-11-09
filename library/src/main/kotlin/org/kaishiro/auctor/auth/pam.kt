@@ -7,7 +7,6 @@ import com.sun.jna.NativeLong
 import com.sun.jna.Pointer
 import com.sun.jna.Structure
 import com.sun.jna.ptr.PointerByReference
-import org.kaishiro.auctor.auth.PamMessage
 
 internal interface PamNative: Library
 {
@@ -94,6 +93,10 @@ internal class PamConv: Structure()
 
 class PasswordVerifier
 {
+	fun verifyCurrentUser(
+		password: ByteArray
+	): Boolean = verify(password = password, username = currentUsername())
+	
 	fun verify(
 		username: String,
 		password: ByteArray,
@@ -221,9 +224,22 @@ internal interface LibC: Library
 		pointer: Pointer
 	)
 	
+	fun geteuid(): Int
+	fun getpwuid(
+		uid: Int
+	): Pointer?
+	
 	companion object
 	{
 		val INSTANCE = Native.load("c", LibC::class.java)
 	}
 }
 
+internal fun currentUsername(): String
+{/*
+	val libC = LibC.INSTANCE
+	val password = libC.getpwuid(libC.geteuid())
+		?: error("Unable to resolve current user")
+	return password.getString(0)*/
+	return System.getProperty("user.name")
+}

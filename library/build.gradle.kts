@@ -127,6 +127,8 @@ dependencies {
 	implementation("io.github.sanyarnd:standard-paths:2.0.0")
 	// ###
 	implementation("net.java.dev.jna:jna:5.17.0")
+	implementation("com.github.ajalt.mordant:mordant:3.1.1")
+	implementation("org.jline:jline:4.4.3")
 }
 
 graalvmNative.toolchainDetection = true // false

@@ -40,7 +40,7 @@ class CommandEngine: CliktCommand(
 		.int()
 	
 	val command by argument(
-		help = "The command to authenticate with its arguments."
+		help = "The command to authenticate, with its arguments."
 	)
 		.multiple()
 	

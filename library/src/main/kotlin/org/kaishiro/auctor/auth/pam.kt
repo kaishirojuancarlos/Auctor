@@ -7,7 +7,9 @@ import com.sun.jna.NativeLong
 import com.sun.jna.Pointer
 import com.sun.jna.Structure
 import com.sun.jna.ptr.PointerByReference
+import io.micronaut.core.annotation.ReflectiveAccess
 
+@ReflectiveAccess
 internal interface PamNative: Library
 {
 	fun pam_start(
@@ -215,6 +217,7 @@ class PasswordVerifier
 	}
 }
 
+@ReflectiveAccess
 internal interface LibC: Library
 {
 	fun malloc(

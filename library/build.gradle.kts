@@ -138,7 +138,7 @@ graalvmNative {
 		{
 		}
 		all {
-			buildArgs.add("-H:+SharedArenaSupport")
+			buildArgs.add("-H:+SharedArenaSupport --enable-native-access=ALL_UNNAMED")
 		}
 	}
 }

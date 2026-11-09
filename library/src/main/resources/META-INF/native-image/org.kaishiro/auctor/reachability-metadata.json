@@ -1,0 +1,19 @@
+{
+  "reflection": [
+    {
+      "type": {
+        "proxy": [
+          "org.kaishiro.auctor.auth.LibC"
+        ]
+      }
+    },
+    {
+      "type": {
+        "proxy": [
+          "org.kaishiro.auctor.auth.PamNative"
+        ]
+      }
+    }
+  ]
+}
+

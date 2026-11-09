@@ -75,7 +75,27 @@ class CommandEngine: CliktCommand(
 			)
 		else
 		{
-			echo(System.getenv("XDG_SESSION_TYPE"))
+			System.getenv("XDG_SESSION_TYPE")?.lowercase()?.trim().let {
+				it?.let {
+					if(it == "wayland")
+						displayGuiPrompt(
+							title = title,
+							process = command,
+							description = description,
+							retries = retries
+						)
+					else if(it == "x11")
+						displayTuiPrompt(
+							title = title,
+							process = command,
+							description = description,
+							retries = retries
+						)
+					else
+						throw IllegalStateException("Invalid backend!")
+				}
+				throw IllegalStateException("No backend available!")
+			}
 		}
 	}
 	

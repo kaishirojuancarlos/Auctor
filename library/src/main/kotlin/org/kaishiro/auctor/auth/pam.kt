@@ -46,6 +46,7 @@ internal interface PamNative: Library
 	}
 }
 
+@ReflectiveAccess
 @Structure.FieldOrder("msg_style", "msg")
 internal class PamMessage(): Structure()
 {
@@ -61,6 +62,7 @@ internal class PamMessage(): Structure()
 	}
 }
 
+@ReflectiveAccess
 @Structure.FieldOrder("resp", "resp_retcode")
 internal class PamResponse(): Structure()
 {
@@ -76,6 +78,7 @@ internal class PamResponse(): Structure()
 	}
 }
 
+@ReflectiveAccess
 internal interface PamConversation: Callback
 {
 	fun invoke(
@@ -86,6 +89,7 @@ internal interface PamConversation: Callback
 	): Int
 }
 
+@ReflectiveAccess
 @Structure.FieldOrder("conv", "appdata_ptr")
 internal class PamConv: Structure()
 {

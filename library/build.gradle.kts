@@ -130,7 +130,7 @@ dependencies {
 	implementation("com.github.ajalt.mordant:mordant:3.1.1")
 	implementation("org.jline:jline:4.4.3")
   // ###
-  implementation("com.jaredrummler:ktsh:1.0.2")
+  implementation("com.jaredrummler:ktsh:1.0.0")
 }
 
 graalvmNative.toolchainDetection = true // false

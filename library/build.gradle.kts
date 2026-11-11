@@ -129,6 +129,8 @@ dependencies {
 	implementation("net.java.dev.jna:jna:5.17.0")
 	implementation("com.github.ajalt.mordant:mordant:3.1.1")
 	implementation("org.jline:jline:4.4.3")
+  // ###
+  implementation("com.jaredrummler:ktsh:1.0.2")
 }
 
 graalvmNative.toolchainDetection = true // false

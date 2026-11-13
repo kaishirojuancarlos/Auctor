@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -27,7 +28,14 @@ java {
 application {
     mainClass = "org.kaishiro.auctor.MainKt"
     applicationName = "auctor"
-}/*
+}
+
+tasks.shadowJar {
+  archiveFileName.set("auctor.jar")
+  mergeServiceFiles()
+}
+
+/*
 distributions {
     main {
         contents {

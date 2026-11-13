@@ -73,7 +73,7 @@ class SudoManager
 	): Result
 	{
 		require(command.isNotEmpty())
-		val process = ShellWrapper.instance.run("echo -n \"$password\" | sudo -S -p '' -- $command")
+		val process = ShellWrapper.instance.run("echo -n \"$password\" | sudo -S -p '' $command")
 		if(process.isSuccess)
 			println(process.stdout())
 		else
@@ -87,9 +87,9 @@ object ShellWrapper
 {
 	val instance: Shell by lazy {
 		sequenceOf(
-			"/usr/bin/zsh",
-			"/usr/bin/fish",
-			"/user/bin/bash"
+			"/usr/bin/env zsh",
+			"/usr/bin/env fish",
+			"/user/bin/env bash"
 		)
 			.firstNotNullOfOrNull { path ->
 				try

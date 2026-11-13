@@ -1,5 +1,6 @@
 package org.kaishiro.auctor.cmdline
 
+import com.github.ajalt.clikt.completion.completionOption
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.arguments.multiple
@@ -14,6 +15,10 @@ class CommandEngine: CliktCommand(
 	name = "auctor"
 )
 {
+	init {
+		completionOption()
+	}
+	
 	val tui by option(
 		"--tui",
 		help = "Explicitly uses the TUI backend."
@@ -58,46 +63,71 @@ class CommandEngine: CliktCommand(
 			?: Default.retires
 		
 		val command = command.joinToString(" ")
-		
-		if(backend == Backend.Gui)
-			displayGuiPrompt(
+		when(backend)
+		{
+			Backend.Gui ->
+			displayByBackend(
+				Backend.Gui,
 				title = title,
 				process = command,
 				description = description,
 				retries = retries
 			)
-		else if(backend == Backend.Tui)
-			displayTuiPrompt(
+			Backend.Tui ->
+			displayByBackend(
+				Backend.Tui,
 				title = title,
 				process = command,
+				description = description,
+				retries = retries
+			)
+			Backend.Auto ->
+			{
+				val bc: String = System.getenv("XDG_SESSION_TYPE")
+				bc.lowercase().trim().let {
+					if(it == "wayland" || it == "x11")
+						displayByBackend(
+							Backend.Gui,
+							title = title,
+							process = command,
+							description = description,
+							retries = retries
+						)
+					else
+						displayByBackend(
+							Backend.Tui,
+							title = title,
+							process = command,
+							description = description,
+							retries = retries
+						)
+				}
+			}
+		}
+	}
+	
+	fun displayByBackend(
+		backend: Backend,
+		title: String = Default.TITLE,
+		process: String,
+		description: String? = null,
+		retries: Int = Default.retires
+	)
+	{
+		if(backend == Backend.Gui)
+			displayGuiPrompt(
+				title = title,
+				process = process,
 				description = description,
 				retries = retries
 			)
 		else
-		{
-			val bc: String = System.getenv("XDG_SESSION_TYPE")
-			bc.lowercase().trim().let {
-				when(it)
-				{
-					"wayland" ->
-						displayGuiPrompt(
-							title = title,
-							process = command,
-							description = description,
-							retries = retries
-						)
-					"x11" ->
-						displayTuiPrompt(
-							title = title,
-							process = command,
-							description = description,
-							retries = retries
-						)
-					else ->
-						throw IllegalStateException("Invalid backend!")
-				}
-			}
-		}
+			displayTuiPrompt(
+				title = title,
+				process = process,
+				description = description,
+				retries = retries
+			)
 	}
 	
 	enum class Backend

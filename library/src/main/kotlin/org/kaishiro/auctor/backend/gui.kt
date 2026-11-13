@@ -53,6 +53,7 @@ import org.kaishiro.auctor.backend.gui.AuctorGuiTheme
 import org.kaishiro.auctor.backend.gui.AuctorGuiWindow
 import org.kaishiro.library.generated.resources.Res
 import org.kaishiro.library.generated.resources.auctor_icon
+import kotlin.system.exitProcess
 import kotlin.time.Duration.Companion.milliseconds
 
 internal enum class PassReturn
@@ -88,15 +89,11 @@ internal fun displayGuiPrompt(
 					count++
 					return PassReturn.Invalid
 				}
-				val process = sudoManager.execute(password, process)
-				process.waitFor()
-				return if(process.exitValue() != 0)
-				{
-					count++
-					PassReturn.Invalid
-				}
-				else
-					PassReturn.Success
+				sudoManager.execute(password, process)
+				// TODO : implement output or error checking
+				exitApplication()
+				// return PassReturn.Success
+				exitProcess(0)
 			}
 			val showDialog = rememberSaveable { mutableStateOf(true) }
 			if(showDialog.value && count < retries)

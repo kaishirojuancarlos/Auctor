@@ -1,5 +1,7 @@
 package org.kaishiro.auctor.auth
 
+import com.jaredrummler.ktsh.Shell
+import com.jaredrummler.ktsh.Shell.Command.Result
 import java.util.concurrent.TimeUnit
 
 class SudoManager
@@ -67,17 +69,38 @@ class SudoManager
 	
 	fun execute(
 		password: String,
-		vararg command: String
-	): Process
+		command: String
+	): Result
 	{
 		require(command.isNotEmpty())
-		require(command.none {
-			it.isBlank()
-		})
-		
-		return ProcessBuilder(
-			listOf("echo", "-n", "\"${password}\"", "|", "sudo", "-S", "-n", "---") + command
+		val process = ShellWrapper.instance.run("echo -n \"$password\" | sudo -S -p '' -- $command")
+		if(process.isSuccess)
+			println(process.stdout())
+		else
+			error(process.stderr())
+		// TODO : optimisations
+		return process
+	}
+}
+
+object ShellWrapper
+{
+	val instance: Shell by lazy {
+		sequenceOf(
+			"/usr/bin/zsh",
+			"/usr/bin/fish",
+			"/user/bin/bash"
 		)
-			.start()
+			.firstNotNullOfOrNull { path ->
+				try
+				{
+					Shell(path)
+				}
+				catch(e: Exception)
+				{
+					null
+				}
+			}
+			?: error("No supported shell found")
 	}
 }

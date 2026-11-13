@@ -7,6 +7,7 @@ import com.github.ajalt.mordant.terminal.prompt
 import org.kaishiro.auctor.auth.PasswordVerifier
 import org.kaishiro.auctor.auth.SudoManager
 import org.kaishiro.auctor.auth.currentUsername
+import kotlin.system.exitProcess
 
 internal fun displayTuiPrompt(
 	title: String = Default.TITLE,
@@ -37,9 +38,10 @@ internal fun displayTuiPrompt(
 			val verified = passwordVerifier.verifyCurrentUser(it.toByteArray())
 			if(verified)
 			{
-				val process = sudoManager.execute(it, process)
-				process.waitFor()
-				break@loop
+				sudoManager.execute(it, process)
+				// TODO : implement output or error checking
+				// break@loop
+				exitProcess(0)
 			}
 		}
 		terminal.println(TextStyles.bold(TextStyles.italic(TextColors.red("The entered password is invalid!"))))
